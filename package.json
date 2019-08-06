@@ -1,0 +1,22 @@
+{
+  "name": "50-states-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mapbox/50-states-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mapbox/50-states-project/issues"
+  },
+  "homepage": "https://github.com/mapbox/50-states-project#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
