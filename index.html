@@ -41,11 +41,10 @@ const map = new mapboxgl.Map({
 
 const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
-    mapboxgl: mapboxgl
+    mapboxgl: mapboxgl,
     marker: {
       color: 'blue'
     },
-    mapboxgl: mapboxgl
 });
 
 document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
