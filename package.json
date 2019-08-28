@@ -1,22 +1,15 @@
 {
-  "name": "50-states-project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "name": "basic",
+  "version": "0.0.0",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "react-scripts start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mapbox/50-states-project.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mapbox/50-states-project/issues"
-  },
-  "homepage": "https://github.com/mapbox/50-states-project#readme",
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "react-scripts": "^1.0.10"
+  },
+  "dependencies": {
+    "mapbox-gl": "^0.39.1",
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0"
   }
 }
