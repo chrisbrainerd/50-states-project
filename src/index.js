@@ -9,9 +9,9 @@ class Application extends React.Component {
   constructor(props: Props) {
     super(props);
     this.state = {
-      lng: 5,
-      lat: 34,
-      zoom: 1.5
+      lng: -102.020395,
+      lat: 40.34488,
+      zoom: 3
     };
   }
 
