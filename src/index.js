@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import mapboxgl from 'mapbox-gl'
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
+mapboxgl.accessToken = 'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q';
 
 class Application extends React.Component {
 
@@ -20,9 +20,9 @@ class Application extends React.Component {
 
     const map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/streets-v9',
-      center: [lng, lat],
-      zoom
+      style: 'mapbox://styles/rmrice/cjyt17lpa139s1cpjp5uxn0se',
+      center: [-102.020395,40.34488],
+      zoom: 3
     });
 
 // Keep Below (Add contents from original index.html above)
