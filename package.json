@@ -4,6 +4,7 @@
   "scripts": {
     "start": "webpack-dev-server --progress --hot --open"
   },
+  "proxy": "http://localhost:5000/",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -16,6 +17,7 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-map-gl": "^5.0.10",

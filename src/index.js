@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import 'babel-polyfill';
 import MapGL, {Marker, Popup, NavigationControl, FullscreenControl} from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 
@@ -30,8 +31,25 @@ export default class App extends Component {
         bearing: 0,
         pitch: 0
       },
-      popupInfo: null
+      popupInfo: null,
+      data: null
     };
+  };
+
+  componentDidMount = () => {
+    this.fetchData()
+        .then(res => this.setState({ data: res.express }))
+        .catch(err => console.log(err));
+  };
+
+  fetchData = async () => {
+    const response = await fetch('/places');
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
   };
 
   mapRef = React.createRef();
@@ -49,6 +67,16 @@ export default class App extends Component {
     })
   };
 
+  geocoderResult = (data) => {
+    // read places.json
+    console.log(data.result);
+    const coords = data.result.center;
+    const placename = data.result.place_name;
+    console.log(coords);
+    console.log(placename);
+    console.log(this.state.data);
+    // write coords and placename to geojson
+  }
 
   render() {
     const {viewport} = this.state;
