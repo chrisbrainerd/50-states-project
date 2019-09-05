@@ -38,7 +38,9 @@ export default class App extends Component {
 
   componentDidMount = () => {
     this.fetchData()
-        .then(res => this.setState({ data: res.express }))
+        .then(res => {
+          this.setState({ data: res.features });
+        })
         .catch(err => console.log(err));
   };
 
