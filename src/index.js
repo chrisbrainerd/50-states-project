@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import 'babel-polyfill';
 import MapGL, {Marker, Popup, NavigationControl, FullscreenControl} from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
+import Pin from './pin';
 
 const TOKEN = 'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q'; // Set your mapbox token here
 
@@ -39,13 +40,13 @@ export default class App extends Component {
   componentDidMount = () => {
     this.fetchData()
         .then(res => {
-          this.setState({ data: res.features });
+          this.setState({ data: res.features })
         })
         .catch(err => console.log(err));
   };
 
   fetchData = async () => {
-    const response = await fetch('/places');
+    const response = await fetch('http://localhost:5000/places');
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -80,9 +81,18 @@ export default class App extends Component {
     // write coords and placename to geojson
   }
 
+  renderMarker = (place) => {
+    const lat = place.geometry.coordinates[1];
+    const lon = place.geometry.coordinates[0];
+    return (
+      <Marker key={`marker-lat`} longitude={lon} latitude={lat}>
+        <Pin size={20} onClick={() => this.setState({popupInfo: null})} />
+      </Marker>
+    )
+  }
+
   render() {
     const {viewport} = this.state;
-
     return (
       <MapGL
         ref={this.mapRef}
@@ -92,8 +102,11 @@ export default class App extends Component {
         mapStyle="mapbox://styles/rmrice/cjyt17lpa139s1cpjp5uxn0se"
         onViewportChange={this.updateViewport}
         mapboxApiAccessToken={TOKEN}
+        children={this.props.children}
       >
 
+        {this.state.data && this.state.data.map(this.renderMarker)}
+        
         <div className="fullscreen" style={fullscreenControlStyle}>
           <FullscreenControl />
         </div>
