@@ -21,6 +21,8 @@ const navStyle = {
   padding: '10px'
 };
 
+const backend = 'http://localhost:5000/places';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +35,8 @@ export default class App extends Component {
         pitch: 0
       },
       popupInfo: null,
-      data: null
+      data: null,
+      geocoderResult: null
     };
   };
 
@@ -45,8 +48,9 @@ export default class App extends Component {
         .catch(err => console.log(err));
   };
 
+  // grab data fron backend API
   fetchData = async () => {
-    const response = await fetch('http://localhost:5000/places');
+    const response = await fetch(backend);
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -54,6 +58,19 @@ export default class App extends Component {
     }
     return body;
   };
+
+  // post data to backend API
+  postData = (payload) => {
+    return fetch(backend, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .catch(err => console.log(`Error: ${err}`))
+  }
 
   mapRef = React.createRef();
 
@@ -71,21 +88,24 @@ export default class App extends Component {
   };
 
   geocoderResult = (data) => {
-    // read places.json
-    console.log(data.result);
-    const coords = data.result.center;
-    const placename = data.result.place_name;
-    console.log(coords);
-    console.log(placename);
-    console.log(this.state.data);
     // write coords and placename to geojson
+    const payload = {
+      coordinates: data.result.geometry.coordinates,
+      name: data.result.place_name,
+      id: data.result.id
+    };
+    this.setState({ geocoderResult: data.result });
+    this.postData(payload)
+      .then(res => console.log("success"))
+      .then(err => console.log("error: ", err));
   }
 
   renderMarker = (place) => {
     const lat = place.geometry.coordinates[1];
     const lon = place.geometry.coordinates[0];
+    const id = place.id || place.properties.id;
     return (
-      <Marker key={`marker-lat`} longitude={lon} latitude={lat}>
+      <Marker key={`marker-${id}`} longitude={lon} latitude={lat}>
         <Pin size={20} onClick={() => this.setState({popupInfo: null})} />
       </Marker>
     )
@@ -106,7 +126,8 @@ export default class App extends Component {
       >
 
         {this.state.data && this.state.data.map(this.renderMarker)}
-        
+        {this.state.geocoderResult ? this.renderMarker(this.state.geocoderResult) : null}
+
         <div className="fullscreen" style={fullscreenControlStyle}>
           <FullscreenControl />
         </div>
