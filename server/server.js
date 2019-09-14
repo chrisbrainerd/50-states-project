@@ -23,7 +23,8 @@ app.post('/places', bodyParser.json(), (req, res) => {
     "type": "Feature",
     "properties": {
       "id": req.body.id,
-      "name": req.body.name
+      "name": req.body.name,
+      "address": req.body.address
     },
     "geometry": {
       "type": "Point",

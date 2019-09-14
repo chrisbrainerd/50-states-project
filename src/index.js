@@ -4,6 +4,7 @@ import 'babel-polyfill';
 import MapGL, {Marker, Popup, NavigationControl, FullscreenControl} from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import Pin from './pin';
+import Info from './place-info';
 
 const TOKEN = 'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q'; // Set your mapbox token here
 
@@ -91,9 +92,11 @@ export default class App extends Component {
     // write coords and placename to geojson
     const payload = {
       coordinates: data.result.geometry.coordinates,
-      name: data.result.place_name,
+      name: data.result.text,
+      address: data.result.place_name,
       id: data.result.id
     };
+
     this.setState({ geocoderResult: data.result });
     this.postData(payload)
       .then(res => console.log("success"))
@@ -104,12 +107,32 @@ export default class App extends Component {
     const lat = place.geometry.coordinates[1];
     const lon = place.geometry.coordinates[0];
     const id = place.id || place.properties.id;
+    const name = place.properties.name;
+    const address = place.properties.address;
     return (
       <Marker key={`marker-${id}`} longitude={lon} latitude={lat}>
-        <Pin size={20} onClick={() => this.setState({popupInfo: null})} />
+        <Pin size={20} onClick={() => this.setState({popupInfo: { id: id, name: name, address: address, longitude: lon, latitude: lat } })} />
       </Marker>
     )
   }
+
+  renderPopup() {
+  const {popupInfo} = this.state;
+  return (
+    popupInfo && (
+      <Popup
+        tipSize={5}
+        anchor="top"
+        longitude={popupInfo.longitude}
+        latitude={popupInfo.latitude}
+        closeOnClick={false}
+        onClose={() => this.setState({popupInfo: null})}
+      >
+        <Info info={popupInfo} />
+      </Popup>
+    )
+  );
+}
 
   render() {
     const {viewport} = this.state;
@@ -127,6 +150,7 @@ export default class App extends Component {
 
         {this.state.data && this.state.data.map(this.renderMarker)}
         {this.state.geocoderResult ? this.renderMarker(this.state.geocoderResult) : null}
+        {this.renderPopup()}
 
         <div className="fullscreen" style={fullscreenControlStyle}>
           <FullscreenControl />
