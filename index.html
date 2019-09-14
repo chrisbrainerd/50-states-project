@@ -1,105 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset='utf-8' />
+  <head>
+    <meta charset='UTF-8' />
     <title>50 States Project Community Project</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
-</head>
-<body>
-
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
-<style>
-    .geocoder {
-        position:absolute;
-        z-index:1;
-        width:50%;
-        left:50%;
-        margin-left:-25%;
-        top:20px;
-    }
-    .mapboxgl-ctrl-geocoder { min-width:100%; }
-
-/* Add markers styling */
-
-    .marker {
-      background-image: url('markers/paint-palette.png');
-      background-size: cover;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-</style>
-<div id='map'></div>
-<div id='geocoder' class='geocoder'></div>
-
-<script>
-
-mapboxgl.accessToken = 'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q';
-const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/rmrice/cjyt17lpa139s1cpjp5uxn0se',
-    center: [-102.020395,40.34488],
-    zoom: 3
-});
-
-// Testing Markers in code before pulling from file
-
-var geojson = {
-  type: 'FeatureCollection',
-  features: [{
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [-77.032, 38.913]
-    },
-    properties: {
-      title: 'Mapbox',
-      description: 'Washington, D.C.'
-    }
-  },
-  {
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [-122.414, 37.776]
-    },
-      properties: {
-      title: 'Mapbox',
-      description: 'San Francisco, California'
-    }
-  }]
-};
-
-geojson.features.forEach(function(marker) {
-
-  // create a HTML element for each feature
-  var el = document.createElement('div');
-  el.className = 'marker';
-
-  // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el)
-    .setLngLat(marker.geometry.coordinates)
-    .addTo(map);
-});
-
-const geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    mapboxgl: mapboxgl,
-    marker: {
-      color: 'blue'
-    },
-});
-
-document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-</script>
-
-</body>
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' rel='stylesheet' />
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src='app.js'></script>
+  </body>
+  <script type="text/javascript">
+    App.renderToDom(document.getElementById('map'));
+  </script>
 </html>
