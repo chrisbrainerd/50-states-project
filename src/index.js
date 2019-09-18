@@ -22,7 +22,7 @@ const navStyle = {
 };
 
 //This URL comes from running sls deploy within /server
-const backend = 'INSERT URL HERE';
+const backend = 'https://olhnae5ysl.execute-api.us-west-2.amazonaws.com/dev/places';
 
 export default class App extends Component {
   constructor(props) {
