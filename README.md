@@ -1,25 +1,12 @@
-50 states map
----
+# 50 states map
 
-This map involves an express backend and a react frontend. The express backend serves out a feature collection of geojson points, while the react frontend renders a map, where you can input points of interest that will be written to the backend and pinned to the map.
+This map involves a [Serverless](https://serverless.com/) backend and a react frontend.
 
+The backend is an API Gateway + Lambda that serves out a feature collection of geojson points.
 
-## Run it
+The React frontend renders a map, where you can input points of interest that will be written to the backend and pinned to the map.
 
-To run this you will need to start the **server** and the **react frontend**. If you just start the react frontend, the map will render, but the data won't.
-
-### Start the server
-
-```bash
-$ cd server
-$ npm start
-````
-
-It should tell you the server is listening at localhost:5000.
-
-For developing, it may be helpful to use `nodemon` to enable hot reloading. Instead of `npm start`, you can run `nodemon index.js`.
-
-### Start the frontend
+## Start the frontend
 
 In a new terminal, do
 
@@ -32,6 +19,18 @@ This should tell you the app is starting at localhost:8080.
 
 You can go to localhost:8080 and you should be able to see the map!
 
+## Update the backend
+
+There is a sample endpoint already deployed for testing and is hardcoded into the frontend
+
+If you wish to deploy it yourself, you will need to install Serverless and [create an AWS account](https://aws.amazon.com/getting-started/).
+
+```bash
+npm i -g serverless
+cd server
+#...make updates if necessary
+sls deploy
+```
 
 ## Data
 
