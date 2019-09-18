@@ -19,16 +19,13 @@ This should tell you the app is starting at localhost:8080.
 
 You can go to localhost:8080 and you should be able to see the map!
 
-## Update the backend
+## Deploy the backend
 
-There is a sample endpoint already deployed for testing and is hardcoded into the frontend
-
-If you wish to deploy it yourself, you will need to install Serverless and [create an AWS account](https://aws.amazon.com/getting-started/).
+To deploy, you will need to install Serverless and [create an AWS account](https://aws.amazon.com/getting-started/). Once your account is created, you will need to [configure your AWS profile](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) so that your Terminal has access to your AWS credentials.
 
 ```bash
 npm i -g serverless
 cd server
-#...make updates if necessary
 sls deploy
 ```
 
@@ -37,7 +34,6 @@ sls deploy
 Data points (places of interest) exist in `server/places.json` as a geojson feature collection. The backend writes to this file and serves it out based on the response handed to it from the frontend.
 
 To remove points, you can simple delete features from the geojson and restart the server.
-
 
 ## To do
 
