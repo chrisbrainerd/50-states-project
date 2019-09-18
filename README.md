@@ -29,6 +29,8 @@ cd server
 sls deploy
 ```
 
+If you wish to take down your URL, run `sls remove`
+
 ## Data
 
 Data points (places of interest) exist in `server/places.json` as a geojson feature collection. The backend writes to this file and serves it out based on the response handed to it from the frontend.
