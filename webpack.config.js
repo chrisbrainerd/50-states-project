@@ -12,11 +12,15 @@ const config = {
     library: 'App'
   },
 
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
+  },
+
   module: {
     rules: [
       {
         // Compile ES2015 using babel
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         include: [__dirname],
         exclude: [/node_modules/],
         use: [
@@ -34,5 +38,5 @@ const config = {
 };
 
 // Enables bundling against src in this repo rather than the installed version
-module.exports = env =>
+module.exports = (env) =>
   env && env.local ? require('../webpack.config.local')(config)(env) : config;
