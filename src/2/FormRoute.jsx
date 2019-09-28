@@ -3,17 +3,15 @@ import Geocoder from 'react-map-gl-geocoder';
 import MapGL, { Marker } from 'react-map-gl';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import ControlText from '@mapbox/mr-ui/control-text';
-import { Input } from 'semantic-ui-react';
-
 import ControlDate from '@mapbox/mr-ui/control-date';
 
 import validateStartDateBeforeEndDate from '@mapbox/mr-ui/form/validators/validate-start-date-before-end-date';
 
 import Button from '@mapbox/mr-ui/button';
 import ControlSelect from '@mapbox/mr-ui/control-select';
-import TextField from '@material-ui/core/TextField';
-
 import moment from 'moment';
+
+import Form from 'react-bootstrap/Form';
 
 export const TOKEN =
   'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q';
@@ -137,7 +135,7 @@ class FormRoute extends Component {
   };
   render = () => (
     <div id='form'>
-      <label class='inline-block txt-bold txt-xlπ mb12 mt18'>
+      <label class='inline-block txt-bold txt-s mb12 mt18'>
         Where should we go?
       </label>
       <div
@@ -184,20 +182,13 @@ class FormRoute extends Component {
         this.state.location.place_type &&
         this.state.location.place_type.includes('address') && (
           <ControlText
-            themeControlWrapper='mt12'
+            themeControlWrapper='mt12 form-field'
             id='displayName'
             label="What's here?"
             onChange={this.handleFormChange}
             value={this.state.displayName}
           />
         )}
-      <label for='date'>
-        <p className='form-label'>
-          When? <span class='txt-normal'>(optional)</span>
-        </p>
-      </label>
-
-      <input type='date' id='date' value={new Date()} min={new Date()} />
 
       <ControlDate
         id='date'
@@ -208,15 +199,16 @@ class FormRoute extends Component {
         placeholder='start'
         endDatePlaceholder='end'
         label={
-          <>
+          <div className='form-field mt12'>
             When? <span class='txt-normal'>(optional)</span>
-          </>
+          </div>
         }
         minDate={new Date()}
         validationError={this.state.dateValidationError}
+        themeWrapper='date-wrapper'
       />
       <ControlText
-        themeControlWrapper='mt12'
+        themeControlWrapper='mt12 form-field'
         id='description'
         label='What makes this place important?'
         optional
@@ -231,7 +223,7 @@ class FormRoute extends Component {
         value={this.state.type}
       />
       <ControlText
-        themeControlWrapper='mt12'
+        themeControlWrapper='mt12 form-field'
         id='link'
         label="Have a link to the place / event's website?"
         optional
@@ -239,7 +231,7 @@ class FormRoute extends Component {
         value={this.state.link}
       />
       <ControlText
-        themeControlWrapper='mt12'
+        themeControlWrapper='mt12 form-field'
         id='privateNotes'
         label="Any notes for the artists? (These won't be displayed publicly)"
         optional
@@ -247,7 +239,7 @@ class FormRoute extends Component {
         value={this.state.privateNotes}
       />
       <ControlText
-        themeControlWrapper='mt12'
+        themeControlWrapper='mt12 form-field'
         id='twitterHandle'
         placeholder='Twitter'
         label="Got a twitter or instagram handle? If you fill either of these out out we'll say the recommendation came from @your_handle_here"
@@ -256,7 +248,7 @@ class FormRoute extends Component {
         value={this.state.twitterHandle}
       />
       <ControlText
-        themeControlWrapper='mt12'
+        themeControlWrapper='mt12 form-field instagram'
         id='instagramHandle'
         placeholder='Instagram'
         optional
