@@ -2,7 +2,9 @@
   "name": "50-states-map",
   "version": "0.0.0",
   "scripts": {
-    "start": "webpack-dev-server --progress --hot --open"
+    "start": "run-p server ui",
+    "server": "cd server && npm run start",
+    "ui": "webpack-dev-server --progress --hot --open"
   },
   "proxy": "http://localhost:5000/",
   "devDependencies": {
@@ -11,6 +13,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "npm-run-all": "^4.1.5",
     "react-scripts": "^3.1.1",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.7",
