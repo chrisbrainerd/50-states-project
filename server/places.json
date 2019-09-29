@@ -1,1 +1,113 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"coordinates":[-97.763726,30.255746],"name":"Alamo Drafthouse Cinema","address":"Alamo Drafthouse Cinema, 1120 S Lamar Blvd, Austin, Texas 78704, United States of America","id":"poi.3195455751641","displayName":"","date":"","link":"alamodrafthouse.com","privateNotes":"call me at 411-111-1111 when you get there, i'll get you in the back entrance","twitterHandle":"@a_wazard","instagramHandle":"","description":"it's pretty sweet","type":"landmark"},"geometry":{"type":"Point","coordinates":[-97.763726,30.255746]}},{"type":"Feature","properties":{"coordinates":[-77.170665,39.116427],"name":"Elmcroft Boulevard","address":"904 Elmcroft Boulevard, Rockville, Maryland 20850, United States of America","id":"address.5998120307352374","displayName":"It's my place!","date":"","link":"","privateNotes":"","twitterHandle":"@a_wazard","instagramHandle":"","description":"It's where I am right now :D","type":"friend"},"geometry":{"type":"Point","coordinates":[-77.170665,39.116427]}}]}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "coordinates": [
+          -97.763726,
+          30.255746
+        ],
+        "name": "Alamo Drafthouse Cinema",
+        "address": "Alamo Drafthouse Cinema, 1120 S Lamar Blvd, Austin, Texas 78704, United States of America",
+        "id": "poi.3195455751641",
+        "displayName": "",
+        "date": "",
+        "link": "alamodrafthouse.com",
+        "privateNotes": "call me at 411-111-1111 when you get there, i'll get you in the back entrance",
+        "twitterHandle": "@a_wazard",
+        "instagramHandle": "",
+        "description": "it's pretty sweet",
+        "type": "landmark"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.763726,
+          30.255746
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "coordinates": [
+          -77.170665,
+          39.116427
+        ],
+        "name": "Elmcroft Boulevard",
+        "address": "904 Elmcroft Boulevard, Rockville, Maryland 20850, United States of America",
+        "id": "address.5998120307352374",
+        "displayName": "It's my place!",
+        "date": "",
+        "link": "",
+        "privateNotes": "",
+        "twitterHandle": "@a_wazard",
+        "instagramHandle": "",
+        "description": "It's where I am right now :D",
+        "type": "friend"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.170665,
+          39.116427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "coordinates": [
+          -85.73882925000001,
+          38.179702250000005
+        ],
+        "name": "",
+        "address": "Louisville International Airport, 600 Terminal Dr, Louisville, Kentucky 40213, United States of America",
+        "id": "poi.429496729638",
+        "displayName": "",
+        "date": "",
+        "link": "",
+        "privateNotes": "",
+        "twitterHandle": "",
+        "instagramHandle": "",
+        "description": "",
+        "type": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.73882925000001,
+          38.179702250000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "coordinates": [
+          106.78,
+          -6.27
+        ],
+        "name": "",
+        "address": "12310, South Jakarta, Jakarta, Indonesia",
+        "id": "postcode.15724151230511290",
+        "displayName": "",
+        "date": "",
+        "link": "",
+        "privateNotes": "",
+        "twitterHandle": "",
+        "instagramHandle": "",
+        "description": "",
+        "type": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.78,
+          -6.27
+        ]
+      }
+    }
+  ]
+}

@@ -9,7 +9,11 @@ body {
 
 .popup {
   max-width: 250px;
-  max-height: 400px;
+  /* max-height: 400px; */
+  /* overflow-y: auto; */
+}
+.popup-scrollable-section {
+  max-height: 230px;
   overflow-y: auto;
 }
 .mapboxgl-popup-close-button {
@@ -19,6 +23,12 @@ body {
   justify-content: center;
   align-items: center;
 }
+.popup-social-icon {
+  margin-right: 5px;
+  margin-bottom: -2px;
+  /* weird but the margin-bottom centers with text */
+}
+
 .mapboxgl-popup-content {
   padding: 15px 20px !important;
 }
@@ -143,9 +153,45 @@ button.mapbox-button:active {
   .mt12.form-field.instagram {
     margin-top: 8px !important;
   }
-  button {
+  button:not(.mapboxgl-popup-close-button) {
     font-size: 30px !important;
     padding: 24px !important;
     border-radius: 30px !important;
+  }
+  .popup-title {
+    /* stop just short of the close button */
+    max-width: calc(100% - 15px);
+  }
+  button.mapboxgl-popup-close-button {
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
+  }
+}
+
+.icon-spin {
+  -webkit-animation: icon-spin 2s infinite linear;
+  animation: icon-spin 2s infinite linear;
+}
+
+@-webkit-keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
   }
 }

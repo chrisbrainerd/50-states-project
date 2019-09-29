@@ -5,12 +5,20 @@ import WixEmbedFormLink from './WixEmbedFormLink';
 import FormRoute from './FormRoute';
 import ResultsMap from './ResultsMap';
 import PopupContent from './Popup';
+import { FakeBefore, FakeAfter } from './MockWixSite';
 
+const now = new Date();
 const components = [
   {
     id: '0',
     label: 'Call to action button',
-    component: <WixEmbedFormLink />
+    component: (
+      <>
+        <FakeBefore />
+        <WixEmbedFormLink />
+        <FakeAfter />
+      </>
+    )
   },
   {
     id: '1',
@@ -20,7 +28,14 @@ const components = [
   {
     id: '2',
     label: 'Results map',
-    component: <ResultsMap />
+    component: (
+      <>
+        <ResultsMap />
+        <button onClick={() => (window.location = window.location)}>
+          refresh
+        </button>
+      </>
+    )
   },
   {
     id: '3',
@@ -41,8 +56,9 @@ const components = [
               id: 'poi.3195455751641',
               displayName: 'Alamo drafthouse',
               date: {
-                date: new Date(),
+                date: now,
                 endDate: new Date('15Feb2020')
+                // endDate: now
               },
               link: 'alamodrafthouse.com',
               privateNotes:
@@ -51,7 +67,7 @@ const components = [
               instagramHandle: '@a_wazard',
               description: "it's pretty sweet",
               type: 'landmark',
-              name: 'Chirs'
+              submitterName: 'Chirs'
             },
             geometry: {
               type: 'Point',
@@ -65,7 +81,7 @@ const components = [
 ];
 
 const FakeRouter = () => {
-  const [activeTab, setActiveTab] = useState('1');
+  const [activeTab, setActiveTab] = useState('2');
   return (
     <div className='AppWrapper'>
       <TabList

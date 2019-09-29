@@ -111,8 +111,6 @@ export default class Map extends Component {
     const lat = place.geometry.coordinates[1];
     const lon = place.geometry.coordinates[0];
     const id = place.id || place.properties.id;
-    const name = place.properties.name;
-    const address = place.properties.address;
     return (
       <Marker key={`marker-${id}`} longitude={lon} latitude={lat}>
         <Pin

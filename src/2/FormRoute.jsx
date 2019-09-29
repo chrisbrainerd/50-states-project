@@ -1,9 +1,10 @@
 import React, { Component, createRef } from 'react';
 import Geocoder from 'react-map-gl-geocoder';
 import MapGL, { Marker } from 'react-map-gl';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaSpinner } from 'react-icons/fa';
 import ControlText from '@mapbox/mr-ui/control-text';
 import ControlDate from '@mapbox/mr-ui/control-date';
+import ControlAlert from '@mapbox/mr-ui/control-alert';
 
 import validateStartDateBeforeEndDate from '@mapbox/mr-ui/form/validators/validate-start-date-before-end-date';
 
@@ -53,23 +54,27 @@ const postData = (payload) => {
     .catch((err) => console.log(`Error: ${err}`));
 };
 
+const initialState = {
+  viewport: {},
+  notes: '',
+  displayName: '',
+  whoAreYou: '',
+  link: '',
+  privateNotes: '',
+  instagramHandle: '',
+  twitterHandle: '',
+  date: '',
+  dateValidationError: '',
+  type: '',
+  description: '',
+  submitterName: '',
+  isLoading: false,
+  isNetworkError: false,
+  wasSubmittedCorrectly: false
+};
+
 class FormRoute extends Component {
-  state = {
-    location: undefined,
-    viewport: {},
-    notes: '',
-    displayName: '',
-    whoAreYou: '',
-    link: '',
-    privateNotes: '',
-    instagramHandle: '',
-    twitterHandle: '',
-    date: '',
-    dateValidationError: '',
-    type: '',
-    description: '',
-    name: ''
-  };
+  state = initialState;
   mapRef = createRef();
   geocoderContainerRef = createRef();
 
@@ -109,7 +114,7 @@ class FormRoute extends Component {
       instagramHandle,
       description,
       type,
-      name
+      submitterName
     } = this.state;
 
     // write coords and placename to geojson
@@ -126,19 +131,25 @@ class FormRoute extends Component {
       instagramHandle,
       description,
       type,
-      name
+      submitterName
     };
 
-    // this.setState({ geocoderResult: data.result });
-    postData(payload)
-      .then((res) => console.log('success'))
-      .then((err) => {
-        if (err) alert('error: ', err);
-      });
+    this.setState({ isLoading: true }, () => {
+      postData(payload)
+        .then((res) => this.setState({ wasSubmittedCorrectly: true }))
+        .then((err) => {
+          if (err) this.setState({ isNetworkError: true });
+        });
+    });
   };
+
+  clearForm = () => {
+    this.setState(initialState);
+  };
+
   render = () => (
     <div id='form'>
-      <label class='inline-block txt-bold txt-s mb12 mt18'>
+      <label className='inline-block txt-bold txt-s mb12 mt18'>
         Where should we go?
       </label>
       <div
@@ -202,8 +213,9 @@ class FormRoute extends Component {
         placeholder='start'
         endDatePlaceholder='end'
         label={
+          // this fails proptype warnings but works ¯\_(ツ)_/¯
           <div className='form-field mt12'>
-            When? <span class='txt-normal'>(optional)</span>
+            When? <span className='txt-normal'>(optional)</span>
           </div>
         }
         minDate={new Date()}
@@ -243,12 +255,12 @@ class FormRoute extends Component {
       />
       <ControlText
         themeControlWrapper='mt12 form-field'
-        id='name'
+        id='submitterName'
         placeholder='Name'
         label='Who are you?'
         optional
         onChange={this.handleFormChange}
-        value={this.state.name}
+        value={this.state.submitterName}
       />
       <ControlText
         themeControlWrapper='mt12 form-field'
@@ -268,8 +280,26 @@ class FormRoute extends Component {
         value={this.state.instagramHandle}
       />
       <div className='mt12'>
-        <Button onClick={this.handleSubmit}>Submit!</Button>
+        <Button disabled={this.state.isLoading} onClick={this.handleSubmit}>
+          Submit! {this.state.isLoading && <FaSpinner className='icon-spin' />}
+        </Button>
       </div>
+      {this.state.wasSubmittedCorrectly && (
+        <>
+          <p className='mt12'>
+            ✨🚀 It's on our map! ✨🚀 Want to check out{' '}
+            <a className='link' href=''>
+              our trip so far?
+            </a>
+          </p>
+          <p className='mt12'>
+            Or got something else to suggest?
+            <span className='ml6'>
+              <Button onClick={this.startOver}>Do it again ⤴</Button>
+            </span>
+          </p>
+        </>
+      )}
     </div>
   );
 }

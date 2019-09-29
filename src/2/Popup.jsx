@@ -4,39 +4,39 @@ import moment from 'moment';
 const getStrippedHandle = (handle) => handle.replace('@', '');
 
 const Twitter = ({ twitterHandle }) =>
-  twitterHandle && (
+  twitterHandle ? (
     <a
       target='_blank'
       rel='noopener noreferrer'
       className='link mr12'
       href={`https://twitter.com/${getStrippedHandle(twitterHandle)}/`}
     >
-      <FaTwitter />
+      <FaTwitter className='popup-social-icon' />
       {'@' + getStrippedHandle(twitterHandle)}
     </a>
-  );
+  ) : null;
 const Instagram = ({ instagramHandle }) =>
-  instagramHandle && (
+  instagramHandle ? (
     <a
       target='_blank'
       rel='noopener noreferrer'
       className='link'
       href={`https://instagram.com/${getStrippedHandle(instagramHandle)}/`}
     >
-      <FaInstagram />
+      <FaInstagram className='popup-social-icon' />
       {'@' + getStrippedHandle(instagramHandle)}
     </a>
-  );
+  ) : null;
 
 const Description = ({ description }) =>
-  description && <p className='txt-em mb6'>{description}</p>;
+  description ? <p className='txt-em mb6'>{description}</p> : null;
 
 const Title = ({ displayName, name }) => (
-  <p className='txt-h4 txt-bold'>{displayName || name}</p>
+  <p className='txt-h4 txt-bold popup-title'>{displayName || name}</p>
 );
 
 const Link = ({ link }) =>
-  link && (
+  link ? (
     <a
       href={link}
       rel='noopener noreferrer'
@@ -45,10 +45,10 @@ const Link = ({ link }) =>
     >
       Website <FaExternalLinkAlt />
     </a>
-  );
+  ) : null;
 
 const Date = ({ date }) =>
-  date && (
+  date ? (
     <p>
       <span className='txt-bold txt-s mr6'>When?</span>
       <span className='txt-s'>
@@ -59,7 +59,10 @@ const Date = ({ date }) =>
       </span>
       <span></span>
     </p>
-  );
+  ) : null;
+
+const SubmitterName = ({ submitterName }) =>
+  submitterName ? <span className='txt-sm ml6'>{submitterName}</span> : null;
 
 const PopupContent = (props) => {
   if (!props.info.properties) return null;
@@ -71,28 +74,32 @@ const PopupContent = (props) => {
         description,
         displayName,
         name,
+        submitterName,
         link,
         date
       }
     }
   } = props;
-
   return (
     <div className='popup'>
       <Title displayName={displayName} name={name} />
-      <Description description={description} />
-      <Date date={date} />
-      <Link link={link} />
-      {(instagramHandle || twitterHandle) && (
-        <>
-          <hr className='txt-hr mb6' />
-          <p className='txt-s'>
-            suggested by: <br />
-            <Twitter twitterHandle={twitterHandle} />
-            <Instagram instagramHandle={instagramHandle} />
-          </p>
-        </>
-      )}
+      <div className='popup-scrollable-section'>
+        <Description description={description} />
+        <Date date={date} />
+        <Link link={link} />
+        {(instagramHandle || twitterHandle || submitterName) && (
+          <>
+            <hr className='txt-hr mb6' />
+            <p className='txt-s'>
+              suggested by:
+              <SubmitterName submitterName={submitterName} />
+              <br />
+              <Twitter twitterHandle={twitterHandle} />
+              <Instagram instagramHandle={instagramHandle} />
+            </p>
+          </>
+        )}
+      </div>
     </div>
   );
 };
