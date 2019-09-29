@@ -6,8 +6,7 @@ import MapGL, {
   NavigationControl,
   FullscreenControl
 } from 'react-map-gl';
-import Pin from '../pin';
-import Info from '../place-info';
+import Pin from '../Pin';
 import PopupContent from './Popup';
 export const TOKEN =
   'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q'; // Set your mapbox token here
@@ -131,11 +130,6 @@ export default class Map extends Component {
 
   renderPopup() {
     const { popupInfo } = this.state;
-    console.log(`|||popupInfo`, popupInfo);
-    console.log(
-      `|||popupInfo.properties.coordinates[1]`,
-      popupInfo && popupInfo.properties.coordinates[1]
-    );
     return (
       popupInfo && (
         <Popup
@@ -143,8 +137,8 @@ export default class Map extends Component {
           anchor='top'
           longitude={popupInfo.properties.coordinates[0]}
           latitude={popupInfo.properties.coordinates[1]}
-          closeOnClick={false}
           onClose={() => this.setState({ popupInfo: null })}
+          closeOnClick
         >
           <PopupContent info={popupInfo} />
         </Popup>

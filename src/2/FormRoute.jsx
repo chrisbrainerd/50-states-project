@@ -67,7 +67,8 @@ class FormRoute extends Component {
     date: '',
     dateValidationError: '',
     type: '',
-    description: ''
+    description: '',
+    name: ''
   };
   mapRef = createRef();
   geocoderContainerRef = createRef();
@@ -107,7 +108,8 @@ class FormRoute extends Component {
       twitterHandle,
       instagramHandle,
       description,
-      type
+      type,
+      name
     } = this.state;
 
     // write coords and placename to geojson
@@ -123,7 +125,8 @@ class FormRoute extends Component {
       twitterHandle,
       instagramHandle,
       description,
-      type
+      type,
+      name
     };
 
     // this.setState({ geocoderResult: data.result });
@@ -237,6 +240,15 @@ class FormRoute extends Component {
         optional
         onChange={this.handleFormChange}
         value={this.state.privateNotes}
+      />
+      <ControlText
+        themeControlWrapper='mt12 form-field'
+        id='name'
+        placeholder='Name'
+        label='Who are you?'
+        optional
+        onChange={this.handleFormChange}
+        value={this.state.name}
       />
       <ControlText
         themeControlWrapper='mt12 form-field'

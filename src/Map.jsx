@@ -7,7 +7,7 @@ import MapGL, {
   FullscreenControl
 } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
-import Pin from './pin';
+import Pin from './Pin';
 import Info from './place-info';
 
 export const TOKEN =
