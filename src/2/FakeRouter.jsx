@@ -9,6 +9,8 @@ import ResultsMap from './ResultsMap';
 import PopupContent from './Popup';
 import { FakeBefore, FakeAfter } from './MockWixSite';
 
+require('./App.less');
+
 const now = new Date();
 const components = [
   {
@@ -101,20 +103,16 @@ const components = [
 ];
 
 const FakeRouter = () => {
-<<<<<<< Updated upstream
-  const [activeTab, setActiveTab] = useState('4');
-=======
   const [activeTab, setActiveTab] = useState('2');
->>>>>>> Stashed changes
   return (
     <div className='AppWrapper'>
+      {components[activeTab].component}
       <TabList
         onChange={setActiveTab}
         activeItem={activeTab}
         items={components}
         themeItem='mb12 border-b--2'
       />
-      {components[activeTab].component}
     </div>
   );
 };

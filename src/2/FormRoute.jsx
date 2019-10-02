@@ -12,8 +12,6 @@ import Button from '@mapbox/mr-ui/button';
 import ControlSelect from '@mapbox/mr-ui/control-select';
 import moment from 'moment';
 
-import Form from 'react-bootstrap/Form';
-
 export const TOKEN =
   'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q';
 const backend = 'http://localhost:5000/places';

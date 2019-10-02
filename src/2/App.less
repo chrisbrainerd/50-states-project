@@ -90,14 +90,15 @@ button.mapbox-button:active {
   border-style: inset;
   border-width: 0.5px;
 }
-
+@marker-red: #ef5a2d;
 .mapboxgl-marker {
   /* color: rgb(60, 187, 177); */
-  color: #ff784f;
   font-size: 30px;
-  filter: drop-shadow(2px 2px 1px #1f635d);
-  font-size: '30px';
-  color: '#3CBBB1';
+  cursor: pointer;
+  & > svg {
+    color: @marker-red;
+    filter: drop-shadow(2px 2px 1px darken(@marker-red, 50%));
+  }
 }
 
 .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {

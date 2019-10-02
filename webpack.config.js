@@ -35,6 +35,25 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'style-loader' // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader' // translates CSS into CommonJS
+          },
+          {
+            loader: 'less-loader' // compiles Less to CSS
+          }
+        ]
+      },
+
+      {
         // Compile ES2015 using babel
         test: /\.(js|jsx)$/,
         include: [__dirname],

@@ -6,7 +6,7 @@ import MapGL, {
   NavigationControl,
   FullscreenControl
 } from 'react-map-gl';
-import Pin from '../Pin';
+import Pin from './Pin';
 import PopupContent from './Popup';
 export const TOKEN =
   'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q'; // Set your mapbox token here
@@ -25,7 +25,8 @@ const navStyle = {
   padding: '10px'
 };
 
-const backend = 'http://localhost:5000/places';
+// const backend = 'http://192.168.0.14:5000/places';
+const backend = `http://${window.location.hostname}:5000/places`;
 
 export default class Map extends Component {
   constructor(props) {
@@ -48,9 +49,13 @@ export default class Map extends Component {
   componentDidMount = () => {
     this.fetchData()
       .then((res) => {
+        this.setState({ err: res });
         this.setState({ data: res.features });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        this.setState({ err: err });
+      });
   };
 
   // grab data fron backend API
@@ -111,6 +116,7 @@ export default class Map extends Component {
     const lat = place.geometry.coordinates[1];
     const lon = place.geometry.coordinates[0];
     const id = place.id || place.properties.id;
+
     return (
       <Marker key={`marker-${id}`} longitude={lon} latitude={lat}>
         <Pin
