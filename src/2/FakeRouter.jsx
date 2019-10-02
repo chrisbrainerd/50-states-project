@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import TabList from '@mapbox/mr-ui/tab-list';
 
+import { FaPalette } from 'react-icons/fa';
+
 import WixEmbedFormLink from './WixEmbedFormLink';
 import FormRoute from './FormRoute';
 import ResultsMap from './ResultsMap';
@@ -77,11 +79,29 @@ const components = [
         />
       </div>
     )
+  },
+  {
+    id: '4',
+    label: 'icon test',
+    component: (
+      <svg
+        height={20}
+        viewBox='0 0 24 24'
+        style={{
+          cursor: 'pointer',
+          fill: '#d00',
+          stroke: 'none',
+          transform: `translate(${-20 / 2}px,${-20}px)`
+        }}
+      >
+        <FaPalette />
+      </svg>
+    )
   }
 ];
 
 const FakeRouter = () => {
-  const [activeTab, setActiveTab] = useState('2');
+  const [activeTab, setActiveTab] = useState('4');
   return (
     <div className='AppWrapper'>
       <TabList

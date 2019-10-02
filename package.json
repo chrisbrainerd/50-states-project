@@ -2,9 +2,9 @@
   "name": "50-states-map",
   "version": "0.0.0",
   "scripts": {
-    "start": "run-p server ui",
-    "server": "cd server && npm run start",
-    "ui": "webpack-dev-server --progress --hot --open"
+    "start": "run-p start:server start:ui",
+    "start:server": "cd server && npm run start",
+    "start:ui": "webpack-dev-server --progress --hot --open"
   },
   "proxy": "http://localhost:5000/",
   "devDependencies": {
