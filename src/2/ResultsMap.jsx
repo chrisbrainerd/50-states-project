@@ -32,7 +32,7 @@ export default class Map extends Component {
     super(props);
     this.state = {
       viewport: {
-        latitude: 37.785164,
+        latitude: 32.785164,
         longitude: -100,
         zoom: 3.5,
         bearing: 0,
@@ -151,7 +151,7 @@ export default class Map extends Component {
         ref={this.mapRef}
         {...viewport}
         width='100%'
-        height='100%'
+        height='300px'
         mapStyle='mapbox://styles/rmrice/cjyt17lpa139s1cpjp5uxn0se'
         onViewportChange={this.updateViewport}
         mapboxApiAccessToken={TOKEN}

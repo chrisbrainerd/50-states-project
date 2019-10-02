@@ -101,7 +101,11 @@ const components = [
 ];
 
 const FakeRouter = () => {
+<<<<<<< Updated upstream
   const [activeTab, setActiveTab] = useState('4');
+=======
+  const [activeTab, setActiveTab] = useState('2');
+>>>>>>> Stashed changes
   return (
     <div className='AppWrapper'>
       <TabList

@@ -20,9 +20,21 @@
     "webpack-dev-server": "^3.8.1"
   },
   "dependencies": {
+<<<<<<< Updated upstream
     "@mapbox/mr-ui": "^0.7.2",
     "@material-ui/core": "^4.4.3",
     "@turf/bbox": "^6.0.1",
+=======
+<<<<<<< Updated upstream
+=======
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.5",
+    "@mapbox/mr-ui": "^0.7.2",
+    "@material-ui/core": "^4.4.3",
+    "@turf/bbox": "^6.0.1",
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.3.1",
     "formik": "^1.5.8",

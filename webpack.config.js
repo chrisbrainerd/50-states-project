@@ -1,5 +1,16 @@
 const resolve = require('path').resolve;
 const webpack = require('webpack');
+const os = require('os');
+
+function getLocalIp() {
+  for (let addresses of Object.values(os.networkInterfaces())) {
+    for (let add of addresses) {
+      if (add.address.startsWith('192.168.')) {
+        return add.address;
+      }
+    }
+  }
+}
 
 const config = {
   mode: 'development',
@@ -10,6 +21,11 @@ const config = {
 
   output: {
     library: 'App'
+  },
+
+  devServer: {
+    host: getLocalIp(),
+    port: 8080
   },
 
   resolve: {
