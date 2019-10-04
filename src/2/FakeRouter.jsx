@@ -106,13 +106,13 @@ const FakeRouter = () => {
   const [activeTab, setActiveTab] = useState('2');
   return (
     <div className='AppWrapper'>
-      {components[activeTab].component}
       <TabList
         onChange={setActiveTab}
         activeItem={activeTab}
         items={components}
         themeItem='mb12 border-b--2'
       />
+      {components[activeTab].component}
     </div>
   );
 };

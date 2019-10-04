@@ -161,6 +161,7 @@ class FormRoute extends Component {
           onResult={this.handleOnResult}
           mapboxApiAccessToken={TOKEN}
           className='asdf'
+          types='poi,district,place,locality,neighborhood'
         />
         <div
           style={

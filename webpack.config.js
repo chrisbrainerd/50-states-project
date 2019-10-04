@@ -23,10 +23,10 @@ const config = {
     library: 'App'
   },
 
-  devServer: {
-    host: getLocalIp(),
-    port: 8080
-  },
+  // devServer: {
+  //   host: getLocalIp(),
+  //   port: 8080
+  // },
 
   resolve: {
     extensions: ['.js', '.jsx', '.json']

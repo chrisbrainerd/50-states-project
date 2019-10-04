@@ -105,7 +105,7 @@ export default class Map extends Component {
       address: data.result.place_name,
       id: data.result.id
     };
-
+    console.log(`|||data`, data);
     this.setState({ geocoderResult: data.result });
     this.postData(payload)
       .then((res) => console.log('success'))
