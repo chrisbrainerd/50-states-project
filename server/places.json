@@ -1,1 +1,113 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"first"},"geometry":{"type":"Point","coordinates":[-116.54296874999999,43.58039085560784]}},{"type":"Feature","properties":{"id":"poi.2843268430341","name":"Mapbox DC, 740 15th St NW, Washington, District of Columbia 20005, United States of America"},"geometry":{"type":"Point","coordinates":[-77.033862,38.899843]}},{"type":"Feature","properties":{"id":"place.14896414922939600","name":"Grand Canyon, Arizona, United States of America"},"geometry":{"type":"Point","coordinates":[-112.0985,36.0966]}},{"type":"Feature","properties":{"id":"place.15734669613361910","name":"San Francisco, California, United States of America"},"geometry":{"type":"Point","coordinates":[-122.463,37.7648]}},{"type":"Feature","properties":{"id":"place.11434876627493080","name":"Georgetown, Texas, United States of America"},"geometry":{"type":"Point","coordinates":[-97.6772,30.6327]}},{"type":"Feature","properties":{"id":"poi.231928235154","name":"George Mason University, 4400 University Dr, Fairfax, Virginia 22030, United States of America"},"geometry":{"type":"Point","coordinates":[-77.307751,38.8301895]}},{"type":"Feature","properties":{"id":"poi.575525618575","name":"Anchorage Museum, 625 C St, Anchorage, Alaska 99501, United States of America"},"geometry":{"type":"Point","coordinates":[-149.8853295,61.216094999999996]}}]}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "coordinates": [
+          -97.763726,
+          30.255746
+        ],
+        "name": "Alamo Drafthouse Cinema",
+        "address": "Alamo Drafthouse Cinema, 1120 S Lamar Blvd, Austin, Texas 78704, United States of America",
+        "id": "poi.3195455751641",
+        "displayName": "",
+        "date": "",
+        "link": "alamodrafthouse.com",
+        "privateNotes": "call me at 411-111-1111 when you get there, i'll get you in the back entrance",
+        "twitterHandle": "@a_wazard",
+        "instagramHandle": "",
+        "description": "it's pretty sweet",
+        "type": "landmark"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.763726,
+          30.255746
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "coordinates": [
+          -77.170665,
+          39.116427
+        ],
+        "name": "Elmcroft Boulevard",
+        "address": "904 Elmcroft Boulevard, Rockville, Maryland 20850, United States of America",
+        "id": "address.5998120307352374",
+        "displayName": "It's my place!",
+        "date": "",
+        "link": "",
+        "privateNotes": "",
+        "twitterHandle": "@a_wazard",
+        "instagramHandle": "",
+        "description": "It's where I am right now :D",
+        "type": "friend"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.170665,
+          39.116427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "coordinates": [
+          -85.73882925000001,
+          38.179702250000005
+        ],
+        "name": "",
+        "address": "Louisville International Airport, 600 Terminal Dr, Louisville, Kentucky 40213, United States of America",
+        "id": "poi.429496729638",
+        "displayName": "",
+        "date": "",
+        "link": "",
+        "privateNotes": "",
+        "twitterHandle": "",
+        "instagramHandle": "",
+        "description": "",
+        "type": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.73882925000001,
+          38.179702250000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "coordinates": [
+          106.78,
+          -6.27
+        ],
+        "name": "",
+        "address": "12310, South Jakarta, Jakarta, Indonesia",
+        "id": "postcode.15724151230511290",
+        "displayName": "",
+        "date": "",
+        "link": "",
+        "privateNotes": "",
+        "twitterHandle": "",
+        "instagramHandle": "",
+        "description": "",
+        "type": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.78,
+          -6.27
+        ]
+      }
+    }
+  ]
+}
