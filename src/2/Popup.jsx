@@ -47,20 +47,6 @@ const Link = ({ link }) =>
     </a>
   ) : null;
 
-const Date = ({ date }) =>
-  date ? (
-    <p>
-      <span className='txt-bold txt-s mr6'>When?</span>
-      <span className='txt-s'>
-        {moment(date.date).format('LL')}
-        {date.endDate &&
-          date.endDate !== date.date &&
-          ` to ${moment(date.endDate).format('LL')}`}
-      </span>
-      <span></span>
-    </p>
-  ) : null;
-
 const SubmitterName = ({ submitterName }) =>
   submitterName ? <span className='txt-sm ml6'>{submitterName}</span> : null;
 
@@ -75,8 +61,7 @@ const PopupContent = (props) => {
         displayName,
         name,
         submitterName,
-        link,
-        date
+        link
       }
     }
   } = props;
@@ -85,7 +70,6 @@ const PopupContent = (props) => {
       <Title displayName={displayName} name={name} />
       <div className='popup-scrollable-section'>
         <Description description={description} />
-        <Date date={date} />
         <Link link={link} />
         {(instagramHandle || twitterHandle || submitterName) && (
           <>

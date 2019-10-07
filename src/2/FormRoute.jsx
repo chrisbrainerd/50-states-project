@@ -202,25 +202,6 @@ class FormRoute extends Component {
             value={this.state.displayName}
           />
         )}
-
-      <ControlDate
-        id='date'
-        moment={moment}
-        value={this.state.date}
-        onChange={this.handleDateChange}
-        dateRange={true}
-        placeholder='start'
-        endDatePlaceholder='end'
-        label={
-          // this fails proptype warnings but works ¯\_(ツ)_/¯
-          <div className='form-field mt12'>
-            When? <span className='txt-normal'>(optional)</span>
-          </div>
-        }
-        minDate={new Date()}
-        validationError={this.state.dateValidationError}
-        themeWrapper='date-wrapper'
-      />
       <ControlText
         themeControlWrapper='mt12 form-field'
         id='description'
