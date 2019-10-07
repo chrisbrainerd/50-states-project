@@ -1,35 +1,198 @@
 body {
   margin: 0;
-  background: #000;
+  /* background: #000; */
 }
-#map {
+#app {
   width: 100vw;
   height: 100vh;
 }
 
-/* not using this yet
-/* .control-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  max-width: 320px;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  padding: 12px 24px;
-  margin: 20px;
-  font-size: 13px;
-  line-height: 2;
-  color: #6b6b76;
-  text-transform: uppercase;
-  outline: none;
+.popup {
+  max-width: 250px;
+  /* max-height: 400px; */
+  /* overflow-y: auto; */
+}
+.popup-scrollable-section {
+  max-height: 230px;
+  overflow-y: auto;
+}
+.mapboxgl-popup-close-button {
+  width: 20px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup-social-icon {
+  margin-right: 5px;
+  margin-bottom: -2px;
+  /* weird but the margin-bottom centers with text */
+}
+
+.mapboxgl-popup-content {
+  padding: 15px 20px !important;
+}
+/* .title {
+  font-family: poppins-semibold, poppins, sans-serif;
+  font-size: 14px;
+}
+
+.info {
+  font-family: sans-serif;
+  font-size: 10px;
 } */
 
 .geocoder {
-    position:absolute;
-    z-index:1;
-    width:50%;
-    left:50%;
-    margin-left:-25%;
-    top:20px;
+  position: absolute;
+  z-index: 1;
+  width: 50%;
+  left: 50%;
+  margin-left: -25%;
+  top: 20px;
 }
-.mapboxgl-ctrl-geocoder { min-width:100%; }
+.mapboxgl-ctrl-geocoder {
+  min-width: 100%;
+}
+
+.AppWrapper {
+  height: calc(100vh - 20px);
+  width: calc(100vw - 20px);
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid rgba(39, 43, 48, 0.2);
+  overflow: auto;
+}
+body {
+  overflow: hidden;
+}
+button.mapbox-button {
+  background-color: rgba(255, 213, 0, 1);
+  color: rgb(60, 60, 60);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  padding: 3px 6px;
+  font: normal normal normal 16px/20px poppins-semibold, poppins, sans-serif;
+  cursor: pointer;
+}
+button.mapbox-button:hover {
+  box-shadow: 1px 1px 1px black;
+}
+button.mapbox-button:active {
+  border: 2px solid rgba(10, 40, 200, 0.7);
+}
+.fake-router-divider {
+  width: 100%;
+  border-color: rgba(0, 0, 0, 0.4);
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 0.5px;
+}
+
+.mapboxgl-marker {
+  /* color: rgb(60, 187, 177); */
+  color: #ff784f;
+  font-size: 30px;
+  filter: drop-shadow(2px 2px 1px #1f635d);
+  font-size: '30px';
+  color: '#3CBBB1';
+}
+
+.mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+  min-width: 100%;
+  width: 100%;
+  margin-bottom: 12px;
+}
+.react-datepicker__month-container {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+@media screen and (max-width: 768px) {
+  label {
+    font-size: 24px !important;
+    line-height: 30px !important;
+  }
+  input,
+  select {
+    width: 100% !important;
+    font-size: 24px !important;
+    line-height: 34px !important;
+  }
+  .select-container {
+    width: 100%;
+  }
+  .date-wrapper > .flex-parent {
+    width: 100%;
+  }
+  .date-wrapper > .flex-parent ~ span {
+    font-size: 24px;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 14px;
+  }
+  .date-wrapper > .flex-parent input {
+    width: 100% !important;
+  }
+  .mapboxgl-ctrl-geocoder--suggestion-title {
+    font-size: 20px;
+  }
+  .mapboxgl-ctrl-geocoder--suggestion-address {
+    font-size: 16px;
+  }
+  .form-field.mt12 {
+    margin-top: 20px !important;
+  }
+  div[role='alert'] {
+    margin-top: 10px;
+  }
+  div[role='alert'] > div {
+    font-size: 20px !important;
+    line-height: 30px;
+  }
+  .mt12.form-field.instagram {
+    margin-top: 8px !important;
+  }
+  button:not(.mapboxgl-popup-close-button) {
+    font-size: 30px !important;
+    padding: 24px !important;
+    border-radius: 30px !important;
+  }
+  .popup-title {
+    /* stop just short of the close button */
+    max-width: calc(100% - 15px);
+  }
+  button.mapboxgl-popup-close-button {
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
+  }
+}
+
+.icon-spin {
+  -webkit-animation: icon-spin 2s infinite linear;
+  animation: icon-spin 2s infinite linear;
+}
+
+@-webkit-keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+  }
+}
