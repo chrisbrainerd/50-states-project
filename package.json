@@ -1,38 +1,11 @@
 {
-  "name": "50-states-map",
-  "version": "0.0.0",
+  "name": "50-states-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "run-p server ui",
-    "server": "cd server && npm run start",
-    "ui": "webpack-dev-server --progress --hot --open"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "proxy": "http://localhost:5000/",
-  "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.6",
-    "npm-run-all": "^4.1.5",
-    "react-scripts": "^3.1.1",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.7",
-    "webpack-dev-server": "^3.8.1"
-  },
-  "dependencies": {
-    "@mapbox/mr-ui": "^0.7.2",
-    "@material-ui/core": "^4.4.3",
-    "@turf/bbox": "^6.0.1",
-    "babel-polyfill": "^6.26.0",
-    "bootstrap": "^4.3.1",
-    "formik": "^1.5.8",
-    "react": "^16.9.0",
-    "react-bootstrap": "^1.0.0-beta.12",
-    "react-dom": "^16.9.0",
-    "react-icons": "^3.7.0",
-    "react-map-gl": "^5.0.10",
-    "react-map-gl-geocoder": "^2.0.11",
-    "react-mapbox-gl-geocoder": "^1.0.3",
-    "semantic-ui-react": "^0.88.1"
-  }
+  "author": "",
+  "license": "ISC"
 }
