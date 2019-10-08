@@ -1,0 +1,36 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: FiftyStatesBackend
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: us-west-2
+
+package:
+ include:
+   - places.json
+
+functions:
+  backend:
+    handler: index.handler
+    events:
+      - http:
+          path: /places
+          method: get
+      - http: 
+          path: /places
+          method: post
+plugins:
+  - serverless-manifest-plugin

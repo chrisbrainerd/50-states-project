@@ -21,7 +21,8 @@ const navStyle = {
   padding: '10px'
 };
 
-const backend = 'http://localhost:5000/places';
+//This URL comes from running sls deploy within /server
+const backend = 'https://olhnae5ysl.execute-api.us-west-2.amazonaws.com/dev/places';
 
 export default class App extends Component {
   constructor(props) {
