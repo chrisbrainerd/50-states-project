@@ -1,0 +1,164 @@
+{
+  "dev": {
+    "urls": {
+      "base": "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev",
+      "baseRaw": "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev",
+      "byPath": {
+        "places": {
+          "url": "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/places",
+          "method": [
+            "post",
+            "get"
+          ]
+        },
+        "map-bundle": {
+          "url": "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/map-bundle",
+          "method": [
+            "get"
+          ]
+        },
+        "form-bundle": {
+          "url": "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/form-bundle",
+          "method": [
+            "get"
+          ]
+        },
+        "map-css": {
+          "url": "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/map-css",
+          "method": [
+            "get"
+          ]
+        },
+        "form-css": {
+          "url": "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/form-css",
+          "method": [
+            "get"
+          ]
+        }
+      },
+      "byFunction": {
+        "backend": {
+          "url": "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/form-css",
+          "method": [
+            "get",
+            "get",
+            "get",
+            "get",
+            "post",
+            "get"
+          ]
+        }
+      },
+      "byMethod": {
+        "get": [
+          "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/form-css"
+        ],
+        "post": [
+          "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/places"
+        ]
+      }
+    },
+    "functions": {
+      "backend": {
+        "name": "FiftyStatesBackend-dev-backend",
+        "arn": "arn:aws:lambda:us-west-2:234858372212:function:FiftyStatesBackend-dev-backend:5",
+        "runtime": "nodejs10.x",
+        "triggers": [
+          [
+            "http"
+          ],
+          [
+            "http"
+          ],
+          [
+            "http"
+          ],
+          [
+            "http"
+          ],
+          [
+            "http"
+          ],
+          [
+            "http"
+          ]
+        ],
+        "dependancies": {
+          "direct": [
+            "express",
+            "body-parser",
+            "fs",
+            "path",
+            "serverless-http"
+          ],
+          "nested": [
+            "@types",
+            "type-is",
+            "mime-types",
+            "mime-db",
+            "media-typer",
+            "raw-body",
+            "unpipe",
+            "iconv-lite",
+            "safer-buffer",
+            "http-errors",
+            "toidentifier",
+            "statuses",
+            "setprototypeof",
+            "inherits",
+            "depd",
+            "bytes",
+            "qs",
+            "on-finished",
+            "ee-first",
+            "debug",
+            "ms",
+            "content-type",
+            "vary",
+            "utils-merge",
+            "serve-static",
+            "send",
+            "range-parser",
+            "mime",
+            "fresh",
+            "etag",
+            "escape-html",
+            "encodeurl",
+            "destroy",
+            "parseurl",
+            "safe-buffer",
+            "proxy-addr",
+            "ipaddr.js",
+            "forwarded",
+            "path-to-regexp",
+            "methods",
+            "merge-descriptors",
+            "finalhandler",
+            "cookie-signature",
+            "cookie",
+            "content-disposition",
+            "array-flatten",
+            "accepts",
+            "negotiator"
+          ]
+        }
+      }
+    },
+    "outputs": [
+      {
+        "OutputKey": "BackendLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-west-2:234858372212:function:FiftyStatesBackend-dev-backend:5",
+        "Description": "Current Lambda function version"
+      },
+      {
+        "OutputKey": "ServiceEndpoint",
+        "OutputValue": "https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev",
+        "Description": "URL of the service endpoint"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "fiftystatesbackend-dev-serverlessdeploymentbucket-lc7z1gx6abj0"
+      }
+    ]
+  }
+}

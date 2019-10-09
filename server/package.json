@@ -12,6 +12,11 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "nodemon": "^1.19.2"
+    "install": "^0.13.0",
+    "nodemon": "^1.19.2",
+    "serverless-http": "^2.3.0"
+  },
+  "devDependencies": {
+    "serverless-manifest-plugin": "0.0.9"
   }
 }

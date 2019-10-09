@@ -12,7 +12,12 @@ import ControlSelect from '@mapbox/mr-ui/control-select';
 export const TOKEN =
   'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q';
 
-const backend = 'http://localhost:5000/places';
+// const backend = 'http://localhost:5000/places';
+console.log(`|||process.env`, process.env);
+const backend =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000/places'
+    : 'https://olhnae5ysl.execute-api.us-west-2.amazonaws.com/dev/places';
 
 const SELECT_OPTIONS = [
   {
@@ -41,6 +46,7 @@ const SELECT_OPTIONS = [
 const postData = (payload) => {
   return fetch(backend, {
     method: 'POST',
+    mode: 'no-cors',
     body: JSON.stringify(payload),
     headers: {
       'Content-Type': 'application/json'

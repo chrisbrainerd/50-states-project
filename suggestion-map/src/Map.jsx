@@ -26,7 +26,11 @@ const navStyle = {
 };
 
 // const backend = 'http://192.168.0.14:5000/places';
-const backend = `http://${window.location.hostname}:5000/places`;
+// const backend = `http://${window.location.hostname}:5000/places`;
+const backend =
+  process.env.NODE_ENV === 'dev'
+    ? 'http://localhost:5000/places'
+    : 'https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/places';
 
 export default class Map extends Component {
   constructor(props) {
@@ -115,7 +119,7 @@ export default class Map extends Component {
     const lat = place.geometry.coordinates[1];
     const lon = place.geometry.coordinates[0];
     const id = place.id || place.properties.id;
-
+    console.log(`|||place`, place);
     return (
       <Marker key={`marker-${id}`} longitude={lon} latitude={lat}>
         <Pin
@@ -138,8 +142,8 @@ export default class Map extends Component {
         <Popup
           tipSize={5}
           anchor='top'
-          longitude={popupInfo.properties.coordinates[0]}
-          latitude={popupInfo.properties.coordinates[1]}
+          longitude={popupInfo.geometry.coordinates[0]}
+          latitude={popupInfo.geometry.coordinates[1]}
           onClose={() => this.setState({ popupInfo: null })}
           closeOnClick
         >

@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+
 const fs = require('fs');
 const path = require('path');
+
 const places = require('./places.json');
-const port = process.env.PORT || 5000;
+const port = 5000;
+const serverless = require('serverless-http');
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -15,6 +18,20 @@ app.use((req, res, next) => {
 // create a GET route
 app.get('/places', (req, res) => {
   res.send(places);
+});
+
+app.get('/map-bundle', (req, res) => {
+  res.sendFile(path.join(__dirname, 'assets', 'map-bundle.js'));
+});
+app.get('/map-css', (req, res) => {
+  res.sendFile(path.join(__dirname, 'assets', 'map.css'));
+});
+
+app.get('/form-bundle', (req, res) => {
+  res.sendFile(path.join(__dirname, 'assets', 'form-bundle.js'));
+});
+app.get('/form-css', (req, res) => {
+  res.sendFile(path.join(__dirname, 'assets', 'form.css'));
 });
 
 // create a POST route
@@ -51,4 +68,8 @@ app.post('/places', bodyParser.json(), (req, res) => {
   });
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+if (process.env.npm_lifecycle_script === `nodemon index.js`) {
+  // nodemon isn't passing env variables :'(
+  app.listen(port, () => console.log(`Listening on port ${port}`));
+}
+module.exports.handler = serverless(app);
