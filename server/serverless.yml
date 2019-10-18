@@ -19,8 +19,8 @@ provider:
   region: us-west-2
 
 package:
- include:
-   - places.json
+  include:
+    - places.json
 
 functions:
   backend:
@@ -29,8 +29,20 @@ functions:
       - http:
           path: /places
           method: get
-      - http: 
+      - http:
           path: /places
           method: post
+      - http:
+          path: /map-bundle
+          method: get
+      - http:
+          path: /form-bundle
+          method: get
+      - http:
+          path: /map-css
+          method: get
+      - http:
+          path: /form-css
+          method: get
 plugins:
   - serverless-manifest-plugin

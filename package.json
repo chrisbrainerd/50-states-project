@@ -1,26 +1,32 @@
 {
-  "name": "50-states-map",
-  "version": "0.0.0",
-  "scripts": {
-    "start": "webpack-dev-server --progress --hot --open"
-  },
+  "name": "50-states-project",
   "proxy": "http://localhost:5000/",
-  "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.6",
-    "react-scripts": "^1.0.10",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7",
-    "webpack-dev-server": "^3.8.0"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "run-p start:form start:map start:server",
+    "install": "run-p install:form install:map install:server",
+    "start:form": "ENV=LOCAL_DEV cd suggestion-form && npm run start",
+    "start:map": "ENV=LOCAL_DEV cd suggestion-map && npm run start",
+    "start:server": "ENV=LOCAL_DEV cd server && npm run start",
+    "install:form": "cd suggestion-form && npm ci",
+    "install:map": "cd suggestion-map && npm ci",
+    "install:server": "cd server && npm ci",
+    "build:form": "cd suggestion-form && npm run build",
+    "build:map": "cd suggestion-map && npm run build",
+    "build": "run-p build:form build:map",
+    "prebuild": "rimraf build && mkdir build",
+    "move:js": "mv ./suggestion-form/build/static/js/main*.js ./build/form-bundle.js && mv ./suggestion-map/build/static/js/main*.js ./build/map-bundle.js",
+    "move:css": "mv ./suggestion-form/build/static/css/main*.css ./build/form.css && mv ./suggestion-map/build/static/css/main*.css ./build/map.css",
+    "move:html": "mv ./suggestion-form/build/index.html ./build/form.html && mv ./suggestion-map/build/index.html ./build/map.html",
+    "move:for-server": "cp -r ./build server/assets",
+    "postbuild": "npm run move:js && npm run move:css && npm run move:html && npm run move:for-server && ECHO \"*\n*\n*\n* 🚀  Now you'll need to update the links in the html file to point to the right filenames\n*\n*\n*\"",
+    "deploy-server": "cd server && sls deploy",
+    "teardown-server": "cd server && sls remove"
   },
-  "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-map-gl": "^5.0.10",
-    "react-map-gl-geocoder": "^2.0.11"
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.0"
   }
 }

@@ -1,4 +1,11 @@
-node_modules
-build
 .DS_Store
+/build
+/node_modules
+/server/assets
+/server/node_modules
+build
+node_modules
 npm-debug.log
+server/.serverless
+suggestion-form/node_modules
+suggestion-map/node_modules
