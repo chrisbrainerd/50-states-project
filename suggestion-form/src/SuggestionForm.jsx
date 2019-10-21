@@ -46,7 +46,6 @@ const SELECT_OPTIONS = [
 const postData = (payload) => {
   return fetch(backend, {
     method: 'POST',
-    mode: 'no-cors',
     body: JSON.stringify(payload),
     headers: {
       'Content-Type': 'application/json'

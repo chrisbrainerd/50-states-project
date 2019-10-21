@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 const fs = require('fs');
 const path = require('path');
@@ -9,11 +10,7 @@ const places = require('./places.json');
 const port = 5000;
 const serverless = require('serverless-http');
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
-  next();
-});
+app.use(cors());
 
 // create a GET route
 app.get('/places', (req, res) => {
