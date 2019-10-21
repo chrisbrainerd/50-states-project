@@ -6,7 +6,7 @@ import {
   FaMonument,
   FaPalette,
   FaUserFriends,
-  FaMoneyBillWave
+  FaDrumstickBite
 } from 'react-icons/fa';
 
 const getPin = (type) => {
@@ -17,10 +17,10 @@ const getPin = (type) => {
       return FaMonument;
     case 'art-space':
       return FaPalette;
-    case 'friend':
-      return FaUserFriends;
-    case 'sponsor':
-      return FaMoneyBillWave;
+    // case 'friend':
+    //   return FaUserFriends;
+    case 'food':
+      return FaDrumstickBite;
     default:
       return FaMapPin;
   }

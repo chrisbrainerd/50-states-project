@@ -13,7 +13,7 @@ export const TOKEN =
   'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q';
 
 // const backend = 'http://localhost:5000/places';
-console.log(`|||process.env`, process.env);
+// console.log(`|||process.env`, process.env);
 const backend =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:5000/places'
@@ -33,12 +33,8 @@ const SELECT_OPTIONS = [
     value: 'art-space'
   },
   {
-    label: 'A friendly face',
-    value: 'friend'
-  },
-  {
-    label: 'Sponsor',
-    value: 'sponsor'
+    label: 'Good food',
+    value: 'food'
   }
 ];
 
@@ -240,7 +236,7 @@ class FormRoute extends Component {
         onChange={this.handleFormChange}
         value={this.state.submitterName}
       />
-      <ControlText
+      {/* <ControlText
         themeControlWrapper='mt12 form-field'
         id='twitterHandle'
         placeholder='Twitter'
@@ -248,7 +244,7 @@ class FormRoute extends Component {
         optional
         onChange={this.handleFormChange}
         value={this.state.twitterHandle}
-      />
+      /> */}
       <ControlText
         themeControlWrapper='mt12 form-field instagram'
         id='instagramHandle'
