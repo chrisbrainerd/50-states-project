@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const fs = require('fs');
 const path = require('path');
@@ -9,13 +10,11 @@ const places = require('./places.json');
 const port = 5000;
 const serverless = require('serverless-http');
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
-  next();
-});
+app.use(cors());
 
 // create a GET route
+app.get('/', (req, res) => res.send('asdjfsdgadhlfg'));
+
 app.get('/places', (req, res) => {
   res.send(places);
 });
@@ -68,8 +67,8 @@ app.post('/places', bodyParser.json(), (req, res) => {
   });
 });
 
-if (process.env.npm_lifecycle_script === `nodemon index.js`) {
-  // nodemon isn't passing env variables :'(
-  app.listen(port, () => console.log(`Listening on port ${port}`));
-}
+// if (process.env.npm_lifecycle_script === `nodemon index.js`) {
+// nodemon isn't passing env variables :'(
+app.listen(port, () => console.log(`Listening on port ${port}`));
+// }
 module.exports.handler = serverless(app);

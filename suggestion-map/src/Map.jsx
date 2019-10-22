@@ -28,7 +28,7 @@ const navStyle = {
 // const backend = 'http://192.168.0.14:5000/places';
 // const backend = `http://${window.location.hostname}:5000/places`;
 const backend =
-  process.env.NODE_ENV === 'dev'
+  process.env.NODE_ENV === 'development'
     ? 'http://localhost:5000/places'
     : 'https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/places';
 
@@ -119,9 +119,14 @@ export default class Map extends Component {
     const lat = place.geometry.coordinates[1];
     const lon = place.geometry.coordinates[0];
     const id = place.id || place.properties.id;
-    console.log(`|||place`, place);
     return (
-      <Marker key={`marker-${id}`} longitude={lon} latitude={lat}>
+      <Marker
+        key={`marker-${id}`}
+        longitude={lon}
+        latitude={lat}
+        offsetLeft={place.properties.type === 'other' ? -5 : -15}
+        offsetTop={place.properties.type === 'other' ? -10 : -30}
+      >
         <Pin
           type={place.properties.type}
           size={20}
@@ -160,7 +165,7 @@ export default class Map extends Component {
         ref={this.mapRef}
         {...viewport}
         width='100%'
-        height='300px'
+        height='400px'
         mapStyle='mapbox://styles/rmrice/cjyt17lpa139s1cpjp5uxn0se'
         onViewportChange={this.updateViewport}
         mapboxApiAccessToken={TOKEN}

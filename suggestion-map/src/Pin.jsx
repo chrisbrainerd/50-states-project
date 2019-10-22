@@ -5,7 +5,7 @@ import {
   FaCalendarDay,
   FaMonument,
   FaPalette,
-  FaUserFriends,
+  FaMapMarkerAlt,
   FaDrumstickBite
 } from 'react-icons/fa';
 
@@ -21,6 +21,8 @@ const getPin = (type) => {
     //   return FaUserFriends;
     case 'food':
       return FaDrumstickBite;
+    case 'other':
+      return FaMapMarkerAlt;
     default:
       return FaMapPin;
   }

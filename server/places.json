@@ -1,33 +1,4 @@
 {
   "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "coordinates": [
-          -122.6068,
-          45.3573
-        ],
-        "name": "Oregon City",
-        "address": "Oregon City, Oregon, United States of America",
-        "id": "place.10866379406613780",
-        "displayName": "",
-        "date": "",
-        "link": "test.com",
-        "privateNotes": "",
-        "twitterHandle": "@a_wazard",
-        "instagramHandle": "",
-        "description": "idk",
-        "type": "",
-        "submitterName": "Me"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.6068,
-          45.3573
-        ]
-      }
-    }
-  ]
+  "features": []
 }

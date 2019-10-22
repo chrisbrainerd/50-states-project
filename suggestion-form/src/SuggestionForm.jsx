@@ -17,7 +17,7 @@ export const TOKEN =
 const backend =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:5000/places'
-    : 'https://olhnae5ysl.execute-api.us-west-2.amazonaws.com/dev/places';
+    : 'https://n1ttac63wb.execute-api.us-west-2.amazonaws.com/dev/places';
 
 const SELECT_OPTIONS = [
   {
@@ -25,7 +25,7 @@ const SELECT_OPTIONS = [
     value: 'event'
   },
   {
-    label: 'Landmark',
+    label: 'Thing worth seeing',
     value: 'landmark'
   },
   {
@@ -35,6 +35,10 @@ const SELECT_OPTIONS = [
   {
     label: 'Good food',
     value: 'food'
+  },
+  {
+    label: 'Other',
+    value: 'other'
   }
 ];
 
@@ -42,10 +46,11 @@ const SELECT_OPTIONS = [
 const postData = (payload) => {
   return fetch(backend, {
     method: 'POST',
-    mode: 'no-cors',
     body: JSON.stringify(payload),
+    mode: 'cors',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     }
   })
     .then((res) => res.json())
@@ -128,15 +133,19 @@ class FormRoute extends Component {
 
     this.setState({ isLoading: true }, () => {
       postData(payload)
-        .then((res) => this.setState({ wasSubmittedCorrectly: true }))
+        .then((res) =>
+          this.setState({ wasSubmittedCorrectly: true, isLoading: false })
+        )
         .then((err) => {
           if (err) this.setState({ isNetworkError: true });
         });
     });
   };
 
-  clearForm = () => {
-    this.setState(initialState);
+  startOver = () => {
+    this.setState(initialState, () => {
+      window.scrollTo(0, 0);
+    });
   };
 
   render = () => (
@@ -154,7 +163,6 @@ class FormRoute extends Component {
           containerRef={this.geocoderContainerRef}
           onResult={this.handleOnResult}
           mapboxApiAccessToken={TOKEN}
-          className='asdf'
           types='poi,district,place,locality,neighborhood'
         />
         <div
@@ -196,6 +204,13 @@ class FormRoute extends Component {
             value={this.state.displayName}
           />
         )}
+      <ControlSelect
+        options={SELECT_OPTIONS}
+        label='What kind of thing is here?'
+        id='type'
+        onChange={this.handleFormChange}
+        value={this.state.type}
+      />
       <ControlText
         themeControlWrapper='mt12 form-field'
         id='description'
@@ -203,13 +218,6 @@ class FormRoute extends Component {
         optional
         onChange={this.handleFormChange}
         value={this.state.description}
-      />
-      <ControlSelect
-        options={SELECT_OPTIONS}
-        label='What kind of thing is here?'
-        id='type'
-        onChange={this.handleFormChange}
-        value={this.state.type}
       />
       <ControlText
         themeControlWrapper='mt12 form-field'
@@ -254,13 +262,17 @@ class FormRoute extends Component {
         value={this.state.instagramHandle}
       />
       <div className='mt12'>
-        <Button disabled={this.state.isLoading} onClick={this.handleSubmit}>
-          Submit! {this.state.isLoading && <FaSpinner className='icon-spin' />}
+        <Button
+          disabled={this.state.isLoading || this.state.wasSubmittedCorrectly}
+          onClick={this.handleSubmit}
+        >
+          {this.state.wasSubmittedCorrectly ? 'Success!' : 'Submit!'}{' '}
+          {this.state.isLoading && <FaSpinner className='icon-spin' />}
         </Button>
       </div>
       {this.state.wasSubmittedCorrectly && (
         <>
-          <p className='mt12'>
+          <p className='mt12 border-l border-l--2 border--orange pl12'>
             <span role='img' aria-label='sparkles'>
               ✨
             </span>
@@ -274,13 +286,15 @@ class FormRoute extends Component {
             <span role='img' aria-label='sparkles'>
               ✨
             </span>
-            Want to check out
-            <a className='link' href='the50statesproject.com'>
+          </p>
+          <p className='mt12 border-l border-l--2 border--orange pl12'>
+            Want to check out{' '}
+            <a className='link ' href='https://the50statesproject.com'>
               our trip so far?
             </a>
           </p>
-          <p className='mt12'>
-            Or got something else to suggest?
+          <p className='mt12 mt12 border-l border-l--2 border--orange pl12'>
+            Or maybe have something else to suggest?
             <span className='ml6'>
               <Button onClick={this.startOver}>Do it again ⤴</Button>
             </span>
