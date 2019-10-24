@@ -65,7 +65,7 @@ const PopupContent = (props) => {
     }
   } = props;
   return (
-    <div className='popup'>
+    <div className='popup' style={{ color: '#213e8c' }}>
       <Title displayName={displayName} name={name} />
       <div className='popup-scrollable-section'>
         <Description description={description} />

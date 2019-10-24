@@ -1,9 +1,18 @@
 import React, { Component, createRef } from 'react';
 import Geocoder from 'react-map-gl-geocoder';
 import MapGL, { Marker } from 'react-map-gl';
-import { FaMapMarkerAlt, FaSpinner } from 'react-icons/fa';
-import ControlText from '@mapbox/mr-ui/control-text';
+import {
+  FaMapPin,
+  FaCalendarDay,
+  FaMonument,
+  FaPalette,
+  FaMapMarkerAlt,
+  FaDrumstickBite,
+  FaSpinner
+} from 'react-icons/fa';
+import { MdHotel } from 'react-icons/md';
 
+import ControlText from '@mapbox/mr-ui/control-text';
 import validateStartDateBeforeEndDate from '@mapbox/mr-ui/form/validators/validate-start-date-before-end-date';
 
 import Button from '@mapbox/mr-ui/button';
@@ -12,8 +21,25 @@ import ControlSelect from '@mapbox/mr-ui/control-select';
 export const TOKEN =
   'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q';
 
-// const backend = 'http://localhost:5000/places';
-// console.log(`|||process.env`, process.env);
+const getPin = (type) => {
+  switch (type) {
+    case 'event':
+      return FaCalendarDay;
+    case 'landmark':
+      return FaMonument;
+    case 'art-space':
+      return FaPalette;
+    case 'lodging':
+      return MdHotel;
+    case 'food':
+      return FaDrumstickBite;
+    case 'other':
+      return FaMapMarkerAlt;
+    default:
+      return FaMapPin;
+  }
+};
+
 const backend =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:5000/places'
@@ -37,7 +63,11 @@ const SELECT_OPTIONS = [
     value: 'food'
   },
   {
-    label: 'Other',
+    label: 'A place to stay',
+    value: 'lodging'
+  },
+  {
+    label: 'Other - let us know below!',
     value: 'other'
   }
 ];
@@ -68,7 +98,7 @@ const initialState = {
   twitterHandle: '',
   date: '',
   dateValidationError: '',
-  type: '',
+  type: 'other',
   description: '',
   submitterName: '',
   isLoading: false,
@@ -148,104 +178,113 @@ class FormRoute extends Component {
     });
   };
 
-  render = () => (
-    <div id='form'>
-      <label className='inline-block txt-bold txt-s mb12 mt18'>
-        Where should we go?
-      </label>
-      <div
-        ref={this.geocoderContainerRef}
-        style={{ width: '100%', minWidth: '100%' }}
-      />
-      <div>
-        <Geocoder
-          mapRef={this.mapRef}
-          containerRef={this.geocoderContainerRef}
-          onResult={this.handleOnResult}
-          mapboxApiAccessToken={TOKEN}
-          types='poi,district,place,locality,neighborhood'
-          countries='US'
-        />
+  render = () => {
+    const Pin = getPin(this.state.type);
+    return (
+      <div id='form'>
+        <label className='inline-block txt-bold txt-s mb12 mt18'>
+          Where should we go?
+        </label>
         <div
-          style={
-            this.state.location
-              ? { width: '100%', height: 300 }
-              : { display: 'none' }
-          }
-        >
-          <MapGL
-            ref={this.mapRef}
-            width='100%'
-            height='100%'
+          ref={this.geocoderContainerRef}
+          style={{ width: '100%', minWidth: '100%' }}
+        />
+        <div>
+          <Geocoder
+            mapRef={this.mapRef}
+            containerRef={this.geocoderContainerRef}
+            onResult={this.handleOnResult}
             mapboxApiAccessToken={TOKEN}
-            mapStyle='mapbox://styles/rmrice/cjyt17lpa139s1cpjp5uxn0se'
-            {...this.state.viewport}
-          >
-            {this.state.location && (
-              <Marker
-                latitude={this.state.location.center[1]}
-                longitude={this.state.location.center[0]}
-                offsetLeft={-15}
-                offsetTop={-30}
-              >
-                <FaMapMarkerAlt className='default-marker' />
-              </Marker>
-            )}
-          </MapGL>
-        </div>
-      </div>
-      {this.state.location &&
-        this.state.location.place_type &&
-        this.state.location.place_type.includes('address') && (
-          <ControlText
-            themeControlWrapper='mt12 form-field'
-            id='displayName'
-            label="What's here?"
-            onChange={this.handleFormChange}
-            value={this.state.displayName}
+            types='poi,district,place,locality,neighborhood'
+            countries='US'
           />
-        )}
-      <ControlSelect
-        options={SELECT_OPTIONS}
-        label='What kind of thing is here?'
-        id='type'
-        onChange={this.handleFormChange}
-        value={this.state.type}
-      />
-      <ControlText
-        themeControlWrapper='mt12 form-field'
-        id='description'
-        label='What makes this place important?'
-        optional
-        onChange={this.handleFormChange}
-        value={this.state.description}
-      />
-      <ControlText
-        themeControlWrapper='mt12 form-field'
-        id='link'
-        label="Have a link to the place / event's website?"
-        optional
-        onChange={this.handleFormChange}
-        value={this.state.link}
-      />
-      <ControlText
-        themeControlWrapper='mt12 form-field'
-        id='privateNotes'
-        label="Any notes for the artists? (These won't be displayed publicly)"
-        optional
-        onChange={this.handleFormChange}
-        value={this.state.privateNotes}
-      />
-      <ControlText
-        themeControlWrapper='mt12 form-field'
-        id='submitterName'
-        placeholder='Name'
-        label='Who are you?'
-        optional
-        onChange={this.handleFormChange}
-        value={this.state.submitterName}
-      />
-      {/* <ControlText
+          <div
+            style={
+              this.state.location
+                ? { width: '100%', height: 300 }
+                : { display: 'none' }
+            }
+          >
+            <MapGL
+              ref={this.mapRef}
+              width='100%'
+              height='100%'
+              mapboxApiAccessToken={TOKEN}
+              mapStyle='mapbox://styles/rmrice/cjyt17lpa139s1cpjp5uxn0se'
+              {...this.state.viewport}
+            >
+              {this.state.location && (
+                <Marker
+                  latitude={this.state.location.center[1]}
+                  longitude={this.state.location.center[0]}
+                  offsetLeft={-15}
+                  offsetTop={this.state.type === 'other' ? -25 : -10}
+                >
+                  <Pin
+                    style={{
+                      fontSize: '30px',
+                      color: '#213e8c',
+                      filter: 'drop-shadow(2px 2px 0px #ffffff)'
+                    }}
+                    className='default-marker'
+                  />
+                </Marker>
+              )}
+            </MapGL>
+          </div>
+        </div>
+        {this.state.location &&
+          this.state.location.place_type &&
+          this.state.location.place_type.includes('address') && (
+            <ControlText
+              themeControlWrapper='mt12 form-field'
+              id='displayName'
+              label="What's here?"
+              onChange={this.handleFormChange}
+              value={this.state.displayName}
+            />
+          )}
+        <ControlSelect
+          options={SELECT_OPTIONS}
+          label='What kind of thing is here?'
+          id='type'
+          onChange={this.handleFormChange}
+          value={this.state.type}
+        />
+        <ControlText
+          themeControlWrapper='mt12 form-field'
+          id='description'
+          label='What makes this place important?'
+          optional
+          onChange={this.handleFormChange}
+          value={this.state.description}
+        />
+        <ControlText
+          themeControlWrapper='mt12 form-field'
+          id='link'
+          label="Have a link to the place / event's website?"
+          optional
+          onChange={this.handleFormChange}
+          value={this.state.link}
+        />
+        <ControlText
+          themeControlWrapper='mt12 form-field'
+          id='privateNotes'
+          label="Any notes for the artists? (These won't be displayed publicly)"
+          optional
+          onChange={this.handleFormChange}
+          value={this.state.privateNotes}
+        />
+        <ControlText
+          themeControlWrapper='mt12 form-field'
+          id='submitterName'
+          placeholder='Name'
+          label='Who are you?'
+          optional
+          onChange={this.handleFormChange}
+          value={this.state.submitterName}
+        />
+        {/* <ControlText
         themeControlWrapper='mt12 form-field'
         id='twitterHandle'
         placeholder='Twitter'
@@ -254,55 +293,56 @@ class FormRoute extends Component {
         onChange={this.handleFormChange}
         value={this.state.twitterHandle}
       /> */}
-      <ControlText
-        themeControlWrapper='mt12 form-field instagram'
-        id='instagramHandle'
-        placeholder='Instagram'
-        optional
-        onChange={this.handleFormChange}
-        value={this.state.instagramHandle}
-      />
-      <div className='mt12'>
-        <Button
-          disabled={this.state.isLoading || this.state.wasSubmittedCorrectly}
-          onClick={this.handleSubmit}
-        >
-          {this.state.wasSubmittedCorrectly ? 'Success!' : 'Submit!'}{' '}
-          {this.state.isLoading && <FaSpinner className='icon-spin' />}
-        </Button>
+        <ControlText
+          themeControlWrapper='mt12 form-field instagram'
+          id='instagramHandle'
+          placeholder='Instagram'
+          optional
+          onChange={this.handleFormChange}
+          value={this.state.instagramHandle}
+        />
+        <div className='mt12'>
+          <Button
+            disabled={this.state.isLoading || this.state.wasSubmittedCorrectly}
+            onClick={this.handleSubmit}
+          >
+            {this.state.wasSubmittedCorrectly ? 'Success!' : 'Submit!'}{' '}
+            {this.state.isLoading && <FaSpinner className='icon-spin' />}
+          </Button>
+        </div>
+        {this.state.wasSubmittedCorrectly && (
+          <>
+            <p className='mt12 border-l border-l--2 border--orange pl12'>
+              <span role='img' aria-label='sparkles'>
+                ✨
+              </span>
+              <span role='img' aria-label='rocket-ship'>
+                🚀
+              </span>
+              It's on our map!
+              <span role='img' aria-label='rocket-ship'>
+                🚀
+              </span>
+              <span role='img' aria-label='sparkles'>
+                ✨
+              </span>
+            </p>
+            <p className='mt12 border-l border-l--2 border--orange pl12'>
+              Want to check out{' '}
+              <a className='link ' href='https://the50statesproject.com'>
+                our trip so far?
+              </a>
+            </p>
+            <p className='mt12 mt12 border-l border-l--2 border--orange pl12'>
+              Or maybe have something else to suggest?
+              <span className='ml6'>
+                <Button onClick={this.startOver}>Do it again ⤴</Button>
+              </span>
+            </p>
+          </>
+        )}
       </div>
-      {this.state.wasSubmittedCorrectly && (
-        <>
-          <p className='mt12 border-l border-l--2 border--orange pl12'>
-            <span role='img' aria-label='sparkles'>
-              ✨
-            </span>
-            <span role='img' aria-label='rocket-ship'>
-              🚀
-            </span>
-            It's on our map!
-            <span role='img' aria-label='rocket-ship'>
-              🚀
-            </span>
-            <span role='img' aria-label='sparkles'>
-              ✨
-            </span>
-          </p>
-          <p className='mt12 border-l border-l--2 border--orange pl12'>
-            Want to check out{' '}
-            <a className='link ' href='https://the50statesproject.com'>
-              our trip so far?
-            </a>
-          </p>
-          <p className='mt12 mt12 border-l border-l--2 border--orange pl12'>
-            Or maybe have something else to suggest?
-            <span className='ml6'>
-              <Button onClick={this.startOver}>Do it again ⤴</Button>
-            </span>
-          </p>
-        </>
-      )}
-    </div>
-  );
+    );
+  };
 }
 export default FormRoute;

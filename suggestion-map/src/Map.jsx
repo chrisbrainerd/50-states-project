@@ -8,6 +8,9 @@ import MapGL, {
 } from 'react-map-gl';
 import Pin from './Pin';
 import PopupContent from './Popup';
+
+require('./App.less');
+
 export const TOKEN =
   'pk.eyJ1Ijoicm1yaWNlIiwiYSI6ImNqY3FsM2x6ajM2dHMycW85cWFvemg0bWMifQ.HiBtNtMmWjfS9AdpK9yv3Q'; // Set your mapbox token here
 
@@ -37,9 +40,9 @@ export default class Map extends Component {
     super(props);
     this.state = {
       viewport: {
-        latitude: 32.785164,
-        longitude: -100,
-        zoom: 3.5,
+        latitude: 42.37,
+        longitude: -72.54,
+        zoom: 14.5,
         bearing: 0,
         pitch: 0
       },
@@ -124,8 +127,10 @@ export default class Map extends Component {
         key={`marker-${id}`}
         longitude={lon}
         latitude={lat}
-        offsetLeft={place.properties.type === 'other' ? -5 : -15}
-        offsetTop={place.properties.type === 'other' ? -10 : -30}
+        // offsetLeft={place.properties.type === 'other' ? -8 : -5}
+        // offsetTop={place.properties.type === 'other' ? -17 : -10}
+        offsetLeft={-15}
+        offsetTop={place.properties.type === 'other' ? -25 : -10}
       >
         <Pin
           type={place.properties.type}
@@ -150,7 +155,8 @@ export default class Map extends Component {
           longitude={popupInfo.geometry.coordinates[0]}
           latitude={popupInfo.geometry.coordinates[1]}
           onClose={() => this.setState({ popupInfo: null })}
-          closeOnClick
+          closeOnClick={false}
+          captureClick={false}
         >
           <PopupContent info={popupInfo} />
         </Popup>
