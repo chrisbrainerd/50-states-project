@@ -19,6 +19,7 @@
     "move:css": "mv ./suggestion-form/build/static/css/main*.css ./build/form.css && mv ./suggestion-map/build/static/css/main*.css ./build/map.css",
     "move:html": "mv ./suggestion-form/build/index.html ./build/form.html && mv ./suggestion-map/build/index.html ./build/map.html",
     "move:for-server": "cp -r ./build server/assets",
+    "build:gh-pages": "npm run build:form && cd suggestion-form && npm run build && cp ./build/static/js/*.js ../static && cp ./build/static/css/*.css ../static && cp ./build/index.html ../index.html",
     "postbuild": "npm run move:js && npm run move:css && npm run move:html && npm run move:for-server && ECHO \"*\n*\n*\n* 🚀  Now you'll need to update the links in the html file to point to the right filenames\n*\n*\n*\"",
     "deploy-server": "cd server && sls deploy",
     "teardown-server": "cd server && sls remove"
